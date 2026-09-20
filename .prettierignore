@@ -1,0 +1,10 @@
+node_modules
+.next
+dist
+storybook-static
+coverage
+package-lock.json
+.npm-cache
+
+# md 는 이 저장소의 산출물이 아니다
+*.md

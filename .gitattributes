@@ -1,0 +1,20 @@
+# 줄바꿈을 저장소 전체에서 LF 로 통일한다.
+#
+# .prettierrc 가 endOfLine: "lf" 를 강제하므로, git 의 core.autocrlf 설정에 따라
+# 체크아웃 시 CRLF 로 변환되면 `npm run format:check` 가 실패한다.
+# 이 파일이 각 개발자의 로컬 git 설정과 무관하게 동작을 고정한다.
+* text=auto eol=lf
+
+# 바이너리 — 변환 대상에서 제외
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# lockfile 은 diff 를 접어둔다
+package-lock.json -diff
