@@ -4,9 +4,14 @@
  * ⚠️ CSS @import 는 다른 규칙보다 앞에 와야 한다. 이 순서를 유지할 것.
  *
  *   1. tailwindcss  — preflight(전역 리셋) · 유틸리티 · @theme 처리기
- *   2. 토큰          — design-system/tokens/theme.css 가 생기면 여기에 잇는다
+ *   2. theme.css    — 토큰. `@theme` 선언이 여기 들어 있어 1 뒤여야 한다
  *
  * 리셋을 따로 두지 않는다. preflight 가 box-sizing · margin · img · form
  * 폰트 상속을 전부 처리하고, 두 벌이 되면 나중 것이 이긴다.
+ *
+ * 전역 기본값(body 배경·글꼴·한국어 줄바꿈·reduced-motion)은
+ * `semantic.css` 의 `@layer base` 에 있다 — 토큰과 같은 파일에 둬야
+ * 값이 갈라지지 않는다.
  */
 @import 'tailwindcss';
+@import './design-system/tokens/theme.css';

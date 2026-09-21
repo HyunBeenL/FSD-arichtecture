@@ -1,0 +1,155 @@
+/*
+ * 원시 팔레트 — 값 그 자체.
+ *
+ * **컴포넌트는 이 파일의 변수를 직접 쓰지 않습니다.** 여기 있는 것은
+ * semantic.css 가 참조할 원재료입니다.
+ *
+ * Tailwind v4 의 `@theme` 는 같은 이름의 유틸리티를 생성하므로, 원시값을
+ * 거기 넣으면 `bg-slate-900` 이 공식 API 가 됩니다. 그 뒤 "쓰지 말라" 를
+ * 린트로만 지키게 되고, 린트는 언젠가 뚫립니다. 그래서 원시값은 일반 CSS
+ * 변수로 둡니다 — 유틸리티가 아예 존재하지 않습니다.
+ */
+
+:root {
+  /* ── slate ─────────────────────────────────────────────── */
+  --ds-slate-50: oklch(0.985 0.002 255);
+  --ds-slate-100: oklch(0.968 0.004 255);
+  --ds-slate-200: oklch(0.93 0.008 255);
+  --ds-slate-300: oklch(0.878 0.012 255);
+  --ds-slate-400: oklch(0.76 0.02 255);
+  --ds-slate-500: oklch(0.64 0.024 255);
+  --ds-slate-600: oklch(0.545 0.026 255);
+  --ds-slate-700: oklch(0.448 0.026 255);
+  --ds-slate-800: oklch(0.34 0.022 255);
+  --ds-slate-900: oklch(0.225 0.018 255);
+  --ds-slate-950: oklch(0.155 0.014 255);
+
+  /* ── blue — 기본 브랜드 ─────────────────────────────────── */
+  --ds-blue-50: oklch(0.976 0.011 260);
+  --ds-blue-100: oklch(0.95 0.023 260);
+  --ds-blue-200: oklch(0.9 0.048 260);
+  --ds-blue-300: oklch(0.82 0.09 260);
+  --ds-blue-400: oklch(0.69 0.163 260);
+  --ds-blue-500: oklch(0.566 0.202 260);
+  --ds-blue-600: oklch(0.516 0.187 260); /* ★ brand */
+  --ds-blue-700: oklch(0.45 0.165 260);
+  --ds-blue-800: oklch(0.375 0.135 260);
+  --ds-blue-900: oklch(0.3 0.1 260);
+  --ds-blue-950: oklch(0.22 0.07 260);
+
+  /* ── red ───────────────────────────────────────────────── */
+  --ds-red-50: oklch(0.978 0.01 28);
+  --ds-red-100: oklch(0.952 0.022 28);
+  --ds-red-200: oklch(0.905 0.048 28);
+  --ds-red-300: oklch(0.828 0.09 28);
+  --ds-red-400: oklch(0.7 0.165 28);
+  --ds-red-500: oklch(0.596 0.212 28);
+  --ds-red-600: oklch(0.532 0.196 28);
+  --ds-red-700: oklch(0.46 0.168 28);
+  --ds-red-800: oklch(0.385 0.135 28);
+  --ds-red-900: oklch(0.31 0.1 28);
+  --ds-red-950: oklch(0.225 0.07 28);
+
+  /* ── amber ─────────────────────────────────────────────── */
+  --ds-amber-50: oklch(0.982 0.014 75);
+  --ds-amber-100: oklch(0.96 0.032 75);
+  --ds-amber-200: oklch(0.92 0.064 75);
+  --ds-amber-300: oklch(0.86 0.1 75);
+  --ds-amber-400: oklch(0.79 0.14 75);
+  --ds-amber-500: oklch(0.72 0.15 75);
+  --ds-amber-600: oklch(0.63 0.132 75);
+  --ds-amber-700: oklch(0.53 0.111 75);
+  --ds-amber-800: oklch(0.43 0.09 75);
+  --ds-amber-900: oklch(0.34 0.07 75);
+  --ds-amber-950: oklch(0.24 0.05 75);
+
+  /* ── green ─────────────────────────────────────────────── */
+  --ds-green-50: oklch(0.978 0.014 155);
+  --ds-green-100: oklch(0.955 0.03 155);
+  --ds-green-200: oklch(0.912 0.058 155);
+  --ds-green-300: oklch(0.845 0.09 155);
+  --ds-green-400: oklch(0.745 0.12 155);
+  --ds-green-500: oklch(0.64 0.135 155);
+  --ds-green-600: oklch(0.545 0.122 155);
+  --ds-green-700: oklch(0.462 0.102 155);
+  --ds-green-800: oklch(0.38 0.082 155);
+  --ds-green-900: oklch(0.3 0.062 155);
+  --ds-green-950: oklch(0.215 0.044 155);
+
+  /*
+   * ── violet · teal — 브랜드 축 (`[data-brand]`) ───────────
+   *
+   * blue 램프의 명도·채도 곡선을 그대로 두고 색상각만 옮긴 것입니다.
+   * teal 은 같은 명도에서 최대 채도가 낮아 채도를 한 단계 줄였습니다.
+   * 브랜드를 추가할 때도 같은 방식으로 램프 하나를 통째로 만듭니다 —
+   * semantic 에 낱개 색을 끼워 넣지 않습니다.
+   */
+  --ds-violet-50: oklch(0.976 0.011 295);
+  --ds-violet-100: oklch(0.95 0.023 295);
+  --ds-violet-200: oklch(0.9 0.048 295);
+  --ds-violet-300: oklch(0.82 0.09 295);
+  --ds-violet-400: oklch(0.69 0.163 295);
+  --ds-violet-500: oklch(0.566 0.202 295);
+  --ds-violet-600: oklch(0.516 0.187 295);
+  --ds-violet-700: oklch(0.45 0.165 295);
+  --ds-violet-800: oklch(0.375 0.135 295);
+  --ds-violet-900: oklch(0.3 0.1 295);
+  --ds-violet-950: oklch(0.22 0.07 295);
+
+  --ds-teal-50: oklch(0.976 0.009 185);
+  --ds-teal-100: oklch(0.95 0.019 185);
+  --ds-teal-200: oklch(0.9 0.04 185);
+  --ds-teal-300: oklch(0.82 0.072 185);
+  --ds-teal-400: oklch(0.69 0.115 185);
+  --ds-teal-500: oklch(0.566 0.118 185);
+  --ds-teal-600: oklch(0.516 0.108 185);
+  --ds-teal-700: oklch(0.45 0.095 185);
+  --ds-teal-800: oklch(0.375 0.078 185);
+  --ds-teal-900: oklch(0.3 0.058 185);
+  --ds-teal-950: oklch(0.22 0.04 185);
+
+  /*
+   * 순백.
+   *
+   * `--ds-surface-raised` 와 `--ds-fg-onEmphasis` 가 이 값을 씁니다.
+   * semantic.css 에 `#fff` 를 직접 적으면 2계층이 무너집니다 —
+   * 원시값은 이 파일에만 존재합니다.
+   */
+  --ds-white: #fff;
+
+  /*
+   * 오버레이 — 배경을 덮는 반투명 검정.
+   *
+   * `color-mix` 로 합성하므로 원시 색을 다시 적지 않습니다. slate-900 이
+   * 바뀌면 오버레이도 함께 따라옵니다.
+   */
+  --ds-overlay: color-mix(in oklab, var(--ds-slate-900) 55%, transparent);
+
+  /* ── 레이어 순서 ── 처음에 정하지 않으면 반드시 충돌합니다 */
+  --ds-z-base: 0;
+  --ds-z-dropdown: 100;
+  --ds-z-sticky: 200;
+  --ds-z-overlay: 300;
+  --ds-z-modal: 400;
+  --ds-z-popover: 500;
+  --ds-z-toast: 600;
+
+  /* ── 모션 ──────────────────────────────────────────────── */
+  --ds-duration-fast: 120ms;
+  --ds-duration-base: 180ms;
+  --ds-duration-slow: 260ms;
+  --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ds-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /*
+   * 그림자 — 원시값입니다.
+   *
+   * 컴포넌트가 `shadow-[0_1px_3px_...]` 를 직접 적으면 색 리터럴이
+   * 컴포넌트로 새어 나갑니다. 여기 두면 다크에서 값만 바꿀 수 있습니다.
+   */
+  --ds-shadow-card:
+    0 1px 3px 0 color-mix(in oklab, var(--ds-slate-900) 8%, transparent),
+    0 1px 2px -1px color-mix(in oklab, var(--ds-slate-900) 6%, transparent);
+  --ds-shadow-popover: 0 4px 12px -2px color-mix(in oklab, var(--ds-slate-900) 12%, transparent);
+  --ds-shadow-modal: 0 16px 40px -8px color-mix(in oklab, var(--ds-slate-900) 20%, transparent);
+}

@@ -1,0 +1,15 @@
+/*
+ * 토큰 진입점 — 디자인 시스템이 밖으로 여는 유일한 CSS 표면.
+ *
+ * **여기서 `@import 'tailwindcss'` 를 하지 않습니다.** 각 빌드 대상(앱 ·
+ * Storybook)이 자기 CSS 진입점에서 Tailwind 를 import 합니다. 여기서 하면
+ * 대상마다 두 번 import 됩니다.
+ *
+ * 2계층으로 나눈 이유는 테마 전환이 컴포넌트 코드에 전혀 영향을 주지 않게
+ * 하려는 것입니다.
+ *
+ *   primitives.css   값 그 자체. 유틸리티를 만들지 않습니다
+ *   semantic.css     역할. 컴포넌트가 아는 유일한 계층
+ */
+@import './primitives.css';
+@import './semantic.css';

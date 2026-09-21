@@ -1,0 +1,348 @@
+/*
+ * 시맨틱 토큰 — 역할.
+ *
+ * **컴포넌트가 아는 유일한 계층입니다.** 원시값이 무엇인지 모릅니다.
+ * 그래서 다크 모드와 브랜드 교체가 컴포넌트를 건드리지 않고 끝납니다.
+ *
+ * 배경/전경은 **반드시 쌍으로** 정의합니다. 배경만 만들고 전경을
+ * `text-white` 로 쓰면 규칙이 그 자리에서 깨집니다.
+ */
+
+:root {
+  /* ── 표면 — 낮은 것부터 ─────────────────────────────────── */
+  --ds-surface-sunken: var(--ds-slate-100);
+  --ds-surface: var(--ds-slate-50);
+  --ds-surface-raised: var(--ds-white);
+  --ds-surface-overlay: var(--ds-overlay);
+  --ds-surface-hover: var(--ds-slate-100);
+  --ds-surface-active: var(--ds-slate-200);
+  --ds-surface-selected: var(--ds-blue-50);
+  --ds-surface-disabled: var(--ds-slate-100);
+  /* 반전 — Tooltip 처럼 배경 위에 어둡게 뜨는 것 */
+  --ds-surface-inverse: var(--ds-slate-900);
+  --ds-fg-onInverse: var(--ds-slate-50);
+
+  /* ── 전경 — 텍스트 회색은 2단계뿐입니다 (3단계는 4.5:1 을 못 넘깁니다) */
+  --ds-fg: var(--ds-slate-900);
+  --ds-fg-muted: var(--ds-slate-600); /* label · placeholder 하한 */
+  --ds-fg-disabled: var(--ds-slate-400); /* 대비 면제 */
+  --ds-fg-onEmphasis: var(--ds-white);
+
+  /* ── 아이콘 — 텍스트와 대비 기준이 다릅니다 (3:1) ───────── */
+  --ds-icon: var(--ds-slate-600);
+  --ds-icon-subtle: var(--ds-slate-500); /* 텍스트로 쓰면 위반 */
+
+  /* ── 경계 — 둘을 나눈 것이 이 팔레트의 핵심 결정입니다 ──── */
+  --ds-border: var(--ds-slate-200); /* 구분선 — 장식, 면제 */
+  --ds-border-field: var(--ds-slate-500); /* 입력 컨트롤 — 1.4.11 필수 */
+  --ds-border-strong: var(--ds-slate-600);
+
+  /* ── brand ─────────────────────────────────────────────── */
+  --ds-brand: var(--ds-blue-600);
+  --ds-brand-solid: var(--ds-blue-600);
+  --ds-brand-hover: var(--ds-blue-700);
+  --ds-brand-active: var(--ds-blue-800);
+  --ds-brand-subtle: var(--ds-blue-100);
+  --ds-brand-onSubtle: var(--ds-blue-700);
+
+  /* ── critical ──────────────────────────────────────────── */
+  --ds-critical: var(--ds-red-600);
+  --ds-critical-solid: var(--ds-red-600);
+  --ds-critical-hover: var(--ds-red-700);
+  --ds-critical-active: var(--ds-red-800);
+  --ds-critical-subtle: var(--ds-red-100);
+  --ds-critical-onSubtle: var(--ds-red-700);
+
+  /* ── success ───────────────────────────────────────────── */
+  --ds-success: var(--ds-green-700);
+  --ds-success-solid: var(--ds-green-700);
+  --ds-success-hover: var(--ds-green-800);
+  --ds-success-subtle: var(--ds-green-100);
+  --ds-success-onSubtle: var(--ds-green-800);
+
+  /* ── warning — 전경 방향이 반대입니다 ───────────────────── */
+  --ds-warning: var(--ds-amber-700);
+  --ds-warning-solid: var(--ds-amber-400);
+  --ds-warning-onSolid: var(--ds-slate-900);
+  --ds-warning-subtle: var(--ds-amber-100);
+  --ds-warning-onSubtle: var(--ds-amber-800);
+
+  /* ── info ──────────────────────────────────────────────── */
+  --ds-info: var(--ds-blue-600);
+  --ds-info-subtle: var(--ds-blue-100);
+  --ds-info-onSubtle: var(--ds-blue-700);
+
+  /* ── 중립 배지 ─────────────────────────────────────────── */
+  --ds-neutral-subtle: var(--ds-slate-100);
+  --ds-neutral-onSubtle: var(--ds-slate-700);
+
+  /* ── 포커스 ────────────────────────────────────────────── */
+  --ds-ring: var(--ds-blue-600);
+  --ds-ring-offset: var(--ds-surface);
+}
+
+/*
+ * 브랜드 축 — 변수 이름은 같게 두고 값만 바꿉니다.
+ * 그래야 컴포넌트를 복제하지 않고 브랜드별 톤이 갈립니다.
+ *
+ * 브랜드가 건드리는 것은 brand 계열과 포커스 링뿐입니다. 표면·전경·상태색을
+ * 브랜드마다 흔들면 대비 검증을 브랜드 수만큼 다시 해야 합니다.
+ */
+[data-brand='violet'] {
+  --ds-brand: var(--ds-violet-600);
+  --ds-brand-solid: var(--ds-violet-600);
+  --ds-brand-hover: var(--ds-violet-700);
+  --ds-brand-active: var(--ds-violet-800);
+  --ds-brand-subtle: var(--ds-violet-100);
+  --ds-brand-onSubtle: var(--ds-violet-700);
+  --ds-surface-selected: var(--ds-violet-50);
+  --ds-ring: var(--ds-violet-600);
+}
+
+[data-brand='teal'] {
+  --ds-brand: var(--ds-teal-700);
+  --ds-brand-solid: var(--ds-teal-700);
+  --ds-brand-hover: var(--ds-teal-800);
+  --ds-brand-active: var(--ds-teal-900);
+  --ds-brand-subtle: var(--ds-teal-100);
+  --ds-brand-onSubtle: var(--ds-teal-800);
+  --ds-surface-selected: var(--ds-teal-50);
+  --ds-ring: var(--ds-teal-700);
+}
+
+/* 다크 — 값만 바꿉니다. 컴포넌트 코드는 건드리지 않습니다 */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ds-surface-sunken: var(--ds-slate-950);
+  --ds-surface: var(--ds-slate-900);
+  --ds-surface-raised: var(--ds-slate-800);
+  --ds-surface-hover: var(--ds-slate-800);
+  --ds-surface-active: var(--ds-slate-700);
+  --ds-surface-selected: var(--ds-blue-900);
+  --ds-surface-disabled: var(--ds-slate-800);
+  /* 다크에서는 반전이 밝은 쪽입니다 */
+  --ds-surface-inverse: var(--ds-slate-100);
+  --ds-fg-onInverse: var(--ds-slate-900);
+
+  --ds-fg: var(--ds-slate-50);
+  --ds-fg-muted: var(--ds-slate-400);
+  --ds-fg-disabled: var(--ds-slate-600);
+
+  --ds-icon: var(--ds-slate-400);
+  --ds-icon-subtle: var(--ds-slate-500);
+
+  --ds-border: var(--ds-slate-700);
+  --ds-border-field: var(--ds-slate-500);
+  --ds-border-strong: var(--ds-slate-400);
+
+  /* surface 위 accent 만 밝게. solid 배경은 밝은 전경 대비를 유지합니다 */
+  --ds-brand: var(--ds-blue-400);
+  --ds-brand-subtle: var(--ds-blue-800);
+  --ds-brand-onSubtle: var(--ds-blue-300);
+  --ds-critical: var(--ds-red-400);
+  --ds-critical-subtle: var(--ds-red-800);
+  --ds-critical-onSubtle: var(--ds-red-300);
+  --ds-success: var(--ds-green-400);
+  --ds-success-subtle: var(--ds-green-800);
+  --ds-success-onSubtle: var(--ds-green-300);
+  --ds-warning: var(--ds-amber-400);
+  --ds-warning-subtle: var(--ds-amber-900);
+  --ds-warning-onSubtle: var(--ds-amber-300);
+  --ds-info: var(--ds-blue-400);
+  --ds-info-subtle: var(--ds-blue-800);
+  --ds-info-onSubtle: var(--ds-blue-300);
+  --ds-neutral-subtle: var(--ds-slate-800);
+  --ds-neutral-onSubtle: var(--ds-slate-300);
+
+  --ds-ring: var(--ds-blue-400);
+}
+
+/*
+ * 브랜드 × 다크.
+ *
+ * `[data-brand]` 와 `[data-theme]` 는 특정도가 같습니다. 조합 선택자를
+ * 두지 않으면 **나중에 선언된 쪽이 이겨** 다크에서 라이트용 브랜드 색이
+ * 남습니다. 어두운 표면 위에서 대비가 깨지는 형태로 나타납니다.
+ */
+[data-theme='dark'][data-brand='violet'],
+[data-theme='dark'] [data-brand='violet'] {
+  --ds-brand: var(--ds-violet-400);
+  --ds-brand-subtle: var(--ds-violet-800);
+  --ds-brand-onSubtle: var(--ds-violet-300);
+  --ds-surface-selected: var(--ds-violet-900);
+  --ds-ring: var(--ds-violet-400);
+}
+
+[data-theme='dark'][data-brand='teal'],
+[data-theme='dark'] [data-brand='teal'] {
+  --ds-brand: var(--ds-teal-400);
+  --ds-brand-subtle: var(--ds-teal-800);
+  --ds-brand-onSubtle: var(--ds-teal-300);
+  --ds-surface-selected: var(--ds-teal-900);
+  --ds-ring: var(--ds-teal-400);
+}
+
+/* `dark:` 유틸리티가 class 가 아니라 data 속성을 보도록 합니다 */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/*
+ * Tailwind 기본 팔레트 제거.
+ *
+ * 이 한 줄이 "원시 색을 직접 쓰지 말라" 를 규칙이 아니라 **불가능**으로
+ * 만듭니다. `bg-slate-900` 은 금지가 아니라 존재하지 않습니다.
+ */
+@theme {
+  --color-*: initial;
+}
+
+/* 다른 변수를 참조하는 theme 변수에는 `inline` 이 필수입니다 */
+@theme inline {
+  --color-surface: var(--ds-surface);
+  --color-surface-sunken: var(--ds-surface-sunken);
+  --color-surface-raised: var(--ds-surface-raised);
+  --color-surface-overlay: var(--ds-surface-overlay);
+  --color-surface-hover: var(--ds-surface-hover);
+  --color-surface-active: var(--ds-surface-active);
+  --color-surface-selected: var(--ds-surface-selected);
+  --color-surface-disabled: var(--ds-surface-disabled);
+  --color-surface-inverse: var(--ds-surface-inverse);
+
+  --color-fg: var(--ds-fg);
+  --color-fg-onInverse: var(--ds-fg-onInverse);
+  --color-fg-muted: var(--ds-fg-muted);
+  --color-fg-disabled: var(--ds-fg-disabled);
+  --color-fg-onEmphasis: var(--ds-fg-onEmphasis);
+
+  --color-icon: var(--ds-icon);
+  --color-icon-subtle: var(--ds-icon-subtle);
+
+  --color-border: var(--ds-border);
+  --color-border-field: var(--ds-border-field);
+  --color-border-strong: var(--ds-border-strong);
+
+  --color-brand: var(--ds-brand);
+  --color-brand-solid: var(--ds-brand-solid);
+  --color-brand-hover: var(--ds-brand-hover);
+  --color-brand-active: var(--ds-brand-active);
+  --color-brand-subtle: var(--ds-brand-subtle);
+  --color-brand-onSubtle: var(--ds-brand-onSubtle);
+
+  --color-critical: var(--ds-critical);
+  --color-critical-solid: var(--ds-critical-solid);
+  --color-critical-hover: var(--ds-critical-hover);
+  --color-critical-active: var(--ds-critical-active);
+  --color-critical-subtle: var(--ds-critical-subtle);
+  --color-critical-onSubtle: var(--ds-critical-onSubtle);
+
+  --color-success: var(--ds-success);
+  --color-success-solid: var(--ds-success-solid);
+  --color-success-hover: var(--ds-success-hover);
+  --color-success-subtle: var(--ds-success-subtle);
+  --color-success-onSubtle: var(--ds-success-onSubtle);
+
+  --color-warning: var(--ds-warning);
+  --color-warning-solid: var(--ds-warning-solid);
+  --color-warning-onSolid: var(--ds-warning-onSolid);
+  --color-warning-subtle: var(--ds-warning-subtle);
+  --color-warning-onSubtle: var(--ds-warning-onSubtle);
+
+  --color-info: var(--ds-info);
+  --color-info-subtle: var(--ds-info-subtle);
+  --color-info-onSubtle: var(--ds-info-onSubtle);
+
+  --color-neutral-subtle: var(--ds-neutral-subtle);
+  --color-neutral-onSubtle: var(--ds-neutral-onSubtle);
+
+  --color-ring: var(--ds-ring);
+  --color-ring-offset: var(--ds-ring-offset);
+
+  /* 라운드 — 중첩 시 안쪽이 더 작습니다 */
+  --radius-sm: 0.25rem; /* 4px  Checkbox */
+  --radius-control: 0.375rem; /* 6px  Button · Input · Select */
+  --radius-card: 0.5rem; /* 8px  Card · Modal · Popover */
+
+  /* 그림자 — 원시값은 primitives.css 가 소유합니다 */
+  --shadow-card: var(--ds-shadow-card);
+  --shadow-popover: var(--ds-shadow-popover);
+  --shadow-modal: var(--ds-shadow-modal);
+
+  /* 레이어 — 원시값은 primitives.css 가 소유합니다 */
+  --z-index-dropdown: var(--ds-z-dropdown);
+  --z-index-sticky: var(--ds-z-sticky);
+  --z-index-overlay: var(--ds-z-overlay);
+  --z-index-modal: var(--ds-z-modal);
+  --z-index-popover: var(--ds-z-popover);
+  --z-index-toast: var(--ds-z-toast);
+
+  /* 타입 스케일 — 기본 14px */
+  --text-display: 1.875rem;
+  --text-display--line-height: 2.5rem;
+  --text-title-lg: 1.5rem;
+  --text-title-lg--line-height: 2.125rem;
+  --text-title-md: 1.25rem;
+  --text-title-md--line-height: 1.875rem;
+  --text-title-sm: 1rem;
+  --text-title-sm--line-height: 1.5rem;
+  --text-body-lg: 1rem;
+  --text-body-lg--line-height: 1.625rem;
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.375rem;
+  --text-body-sm: 0.8125rem;
+  --text-body-sm--line-height: 1.25rem;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.125rem;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+
+  /* 컨테이너 폭 */
+  --container-content: 90rem; /* 1440px  목록 */
+  --container-form: 45rem; /*  720px  폼 */
+  --container-narrow: 30rem; /*  480px  로그인 */
+
+  /* 모션 */
+  --ease-standard: var(--ds-ease-standard);
+  --ease-exit: var(--ds-ease-exit);
+
+  --font-sans:
+    'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+/* ── 전역 기본값 ────────────────────────────────────────── */
+@layer base {
+  :root {
+    color-scheme: light;
+    /* 한국어 줄바꿈 — 어절 단위로 끊되, 컨테이너를 넘는 긴 토큰은 끊습니다 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--ds-surface);
+    color: var(--ds-fg);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* 전정 장애 사용자에게 이동 애니메이션은 실제 어지럼증을 유발합니다 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    /* 단, 진행 표시는 유지합니다 — 제거하면 정보가 사라집니다 */
+    .ds-spinner {
+      animation-duration: 700ms !important;
+      animation-iteration-count: infinite !important;
+    }
+  }
+}
