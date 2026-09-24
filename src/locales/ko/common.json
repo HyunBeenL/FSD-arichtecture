@@ -1,0 +1,22 @@
+{
+  "action": {
+    "confirm": "확인",
+    "cancel": "취소",
+    "save": "저장",
+    "delete": "삭제",
+    "close": "닫기",
+    "retry": "다시 시도"
+  },
+  "status": {
+    "loading": "불러오는 중...",
+    "empty": "표시할 항목이 없습니다"
+  },
+  "post": {
+    "deleteTitle": "게시글을 삭제할까요?",
+    "deleteDescription": "삭제한 글은 복구할 수 없습니다."
+  },
+  "toast": {
+    "saved": "저장했습니다",
+    "deleted": "삭제했습니다"
+  }
+}

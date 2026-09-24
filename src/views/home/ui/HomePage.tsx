@@ -37,71 +37,69 @@ export function HomePage() {
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-16">
-      <Stack gap={10}>
-        <Stack gap={2}>
-          <Heading level={1} size="lg">
-            FSD Architecture
+    <Stack gap={10} className="mx-auto max-w-2xl">
+      <Stack gap={2}>
+        <Heading level={1} size="lg">
+          FSD Architecture
+        </Heading>
+        <Text size="body-sm" tone="muted">
+          모듈은 자기보다 아래 계층만 import 한다. 같은 계층의 다른 슬라이스도 참조하지 않는다.
+        </Text>
+      </Stack>
+
+      <Stack gap={2}>
+        <Text size="caption" tone="muted">
+          계층
+        </Text>
+        <ol className="space-y-px">
+          {LAYERS.map((layer) => (
+            <li key={layer.name} className="bg-surface-sunken flex gap-4 px-4 py-3">
+              <code className="text-body-sm w-20 shrink-0 font-semibold">{layer.name}</code>
+              <Text size="body-sm" tone="muted">
+                {layer.role}
+              </Text>
+            </li>
+          ))}
+        </ol>
+        <Text size="caption" tone="muted">
+          design-system 은 계층 밖이다. 별도 패키지로 뗄 것을 전제한다.
+        </Text>
+      </Stack>
+
+      <Stack gap={5}>
+        <Stack gap={1}>
+          <Heading level={2} size="sm">
+            shared/ui
           </Heading>
-          <Text size="body-sm" tone="muted">
-            모듈은 자기보다 아래 계층만 import 한다. 같은 계층의 다른 슬라이스도 참조하지 않는다.
+          <Text size="caption" tone="muted">
+            design-system 위에 얹은 도메인 비종속 조합. 밖에서는 이 배럴만 본다
           </Text>
         </Stack>
 
         <Stack gap={2}>
           <Text size="caption" tone="muted">
-            계층
+            SubmitButton — 폼의 주 액션. type · variant · tone 을 고정한 Button 이다
           </Text>
-          <ol className="space-y-px">
-            {LAYERS.map((layer) => (
-              <li key={layer.name} className="bg-surface-sunken flex gap-4 px-4 py-3">
-                <code className="text-body-sm w-20 shrink-0 font-semibold">{layer.name}</code>
-                <Text size="body-sm" tone="muted">
-                  {layer.role}
-                </Text>
-              </li>
-            ))}
-          </ol>
-          <Text size="caption" tone="muted">
-            design-system 은 계층 밖이다. 별도 패키지로 뗄 것을 전제한다.
-          </Text>
+          <form onSubmit={handleSubmit}>
+            <Stack direction="row" gap={2} align="center" wrap>
+              <SubmitButton loading={submitting}>저장</SubmitButton>
+              <SubmitButton size="sm">작게</SubmitButton>
+              <SubmitButton size="lg">크게</SubmitButton>
+              <SubmitButton disabled>비활성</SubmitButton>
+            </Stack>
+          </form>
         </Stack>
 
-        <Stack gap={5}>
-          <Stack gap={1}>
-            <Heading level={2} size="sm">
-              shared/ui
-            </Heading>
-            <Text size="caption" tone="muted">
-              design-system 위에 얹은 도메인 비종속 조합. 밖에서는 이 배럴만 본다
-            </Text>
-          </Stack>
-
-          <Stack gap={2}>
-            <Text size="caption" tone="muted">
-              SubmitButton — 폼의 주 액션. type · variant · tone 을 고정한 Button 이다
-            </Text>
-            <form onSubmit={handleSubmit}>
-              <Stack direction="row" gap={2} align="center" wrap>
-                <SubmitButton loading={submitting}>저장</SubmitButton>
-                <SubmitButton size="sm">작게</SubmitButton>
-                <SubmitButton size="lg">크게</SubmitButton>
-                <SubmitButton disabled>비활성</SubmitButton>
-              </Stack>
-            </form>
-          </Stack>
-
-          <Stack gap={2}>
-            <Text size="caption" tone="muted">
-              Pagination — 이전 · 번호 · 다음. 한 장뿐이면 아무것도 그리지 않는다
-            </Text>
-            <Pagination page={page} totalPages={DEMO_TOTAL_PAGES} onChange={setPage} />
-            <Text size="caption" tone="muted">
-              지금 {page} / {DEMO_TOTAL_PAGES} 쪽
-            </Text>
-          </Stack>
+        <Stack gap={2}>
+          <Text size="caption" tone="muted">
+            Pagination — 이전 · 번호 · 다음. 한 장뿐이면 아무것도 그리지 않는다
+          </Text>
+          <Pagination page={page} totalPages={DEMO_TOTAL_PAGES} onChange={setPage} />
+          <Text size="caption" tone="muted">
+            지금 {page} / {DEMO_TOTAL_PAGES} 쪽
+          </Text>
         </Stack>
       </Stack>
-    </main>
+    </Stack>
   );
 }
