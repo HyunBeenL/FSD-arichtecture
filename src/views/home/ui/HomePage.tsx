@@ -3,7 +3,8 @@
 /* ⚠️ 샘플 — 이 화면은 스켈레톤이 무엇을 갖췄는지 보여 준다.
    복사해 쓰는 쪽은 이 화면을 자기 첫 화면으로 바꾼다 */
 import { useState } from 'react';
-import { Heading, Stack, Text } from '@/design-system';
+import RouterLink from 'next/link';
+import { Button, Heading, Stack, Text } from '@/design-system';
 import { Pagination, SubmitButton } from '@/shared/ui';
 
 /* LAYERS 는 이 스켈레톤이 고정한 계층과 각 계층의 책임이다 */
@@ -44,6 +45,18 @@ export function HomePage() {
         </Heading>
         <Text size="body-sm" tone="muted">
           모듈은 자기보다 아래 계층만 import 한다. 같은 계층의 다른 슬라이스도 참조하지 않는다.
+        </Text>
+      </Stack>
+
+      <Stack gap={2} align="start">
+        <Text size="caption" tone="muted">
+          기능
+        </Text>
+        <Button asChild size="sm">
+          <RouterLink href="/board">게시판</RouterLink>
+        </Button>
+        <Text size="caption" tone="muted">
+          목록 · 작성 · 수정 · 삭제. 로그인하지 않으면 proxy.ts 가 /login 으로 보낸다
         </Text>
       </Stack>
 

@@ -18,6 +18,8 @@ export interface RouteMeta {
    useRouteMeta 는 위에서부터 훑어 처음 맞는 것을 쓴다 */
 const ROUTE_META: ReadonlyArray<readonly [RegExp, RouteMeta]> = [
   [/^\/login$/, { hideFooter: true }],
+  /* ⚠️ 샘플 — 게시판 경로. 복사해 쓰는 쪽은 자기 경로로 바꾼다 */
+  [/^\/board(\/.*)?$/, { title: '게시판', breadcrumb: ['운영', '게시판'] }],
   [/^\/$/, { title: 'FSD Architecture' }],
 ];
 
